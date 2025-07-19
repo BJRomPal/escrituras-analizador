@@ -1,0 +1,14 @@
+dotenv
+pytesseract
+pdf2image
+pymongo
+langchain
+openai
+python-dotenv
+pydantic
+pandas
+pypdf
+Pillow
+streamlit
+langchain_openai
+PyPDF2

@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - "27017:27017" # Mapea el puerto 27017 del host al 27017 del contenedor
+    volumes:
+      - mongodb_data:/data/db # Persistencia de datos para MongoDB
+    environment:
+      # Opcional: Configura usuario y contraseña para MongoDB
+      MONGO_INITDB_ROOT_USERNAME: administrador
+      MONGO_INITDB_ROOT_PASSWORD: administrador
+    restart: always # Siempre reinicia el contenedor si se detiene
+
+  your_app:
+    build:
+      context: . # El contexto es el directorio actual donde está el Dockerfile
+      dockerfile: Dockerfile
+    container_name: extractor_escrituras_container
+    ports:
+      - "8501:8501" # Si tu aplicación expone un puerto (e.g., una API REST)
+    volumes:
+      - .:/app # Mapea tu código fuente para facilitar el desarrollo (opcional)
+    depends_on:
+      - mongodb # Asegura que MongoDB se inicie antes que tu aplicación
+    environment:
+      # Variables de entorno para tu aplicación, por ejemplo, la URL de MongoDB
+      MONGO_URI: mongodb://mongodb:27017/extractor_db
+    restart: on-failure # Reinicia si falla
+
+volumes:
+  mongodb_data: # Define el volumen para MongoDB
