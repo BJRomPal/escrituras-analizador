@@ -41,8 +41,8 @@ Para poner en marcha esta aplicación en tu máquina, solo necesitas tener Docke
 ### Clonar el Repositorio:
 
 ```Bash
-git clone https://github.com/tu-usuario/nombre-de-tu-repositorio.git
-cd nombre-de-tu-repositorio
+git clone https://github.com/bjrompal/escrituras-analizador.git
+cd escrituras-analizador
 ```
 
 ### Configurar Variables de Entorno:
