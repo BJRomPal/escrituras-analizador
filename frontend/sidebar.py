@@ -40,7 +40,7 @@ def display_sidebar():
                 st.warning("Por favor, sube un archivo PDF antes de iniciar.")
                 st.session_state.start_analysis = False
         
-        # Separador visual para la nueva funcionalidad
+        # Separador visual para la funcionalidad de búsqueda de carpetas ya creadas
         st.markdown("---")
         
         st.header("Buscar Carpeta Existente")
