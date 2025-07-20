@@ -37,7 +37,7 @@ def get_db_collection():
 
         # Construir la URI de conexión
         if mongodb_user and mongodb_pass:
-            # Asegúrate de que tu pymongo esté usando la autenticación correcta (authSource)
+            # Nos aseguramos que pymongo esté usando la autenticación correcta (authSource)
             MONGODB_URI = f"mongodb://{mongodb_user}:{mongodb_pass}@{mongodb_host}:{mongodb_port}/{mongodb_db_name}?authSource={auth_source}"
         else:
             MONGODB_URI = f"mongodb://{mongodb_host}:{mongodb_port}/{mongodb_db_name}"
@@ -49,7 +49,7 @@ def get_db_collection():
         st.session_state.db_client = client
         st.success(f"Conexión a MongoDB ({mongodb_host}:{mongodb_port}) establecida con éxito.")
 
-        db = client[mongodb_db_name] # Aquí seleccionas tu base de datos de trabajo
+        db = client[mongodb_db_name] # Aquí seleccionamos la base de datos de trabajo
         return db['escrituras']
     except Exception as e:
         st.error(f"Error crítico al conectar a la base de datos: {e}. Asegúrate de que MongoDB esté corriendo y las credenciales sean correctas.")
@@ -73,6 +73,7 @@ def save_to_mongodb(data: dict, numero_carpeta: int) -> bool:
 
     update_payload = data.copy()
     update_payload['numero_carpeta'] = numero_carpeta
+    # Eliminamos el _id y fecha_creacion para que no cree problemas cuando se hace una modificación a los datos.
     update_payload.pop('_id', None)
     update_payload.pop('fecha_creacion', None)
 
