@@ -26,7 +26,7 @@ def extract_text_from_pdf(pdf_path):
         images = convert_from_path(pdf_path)
         for i, image in enumerate(images):
             print(f"Procesando página {i+1} con Tesseract (OCR)...")
-            # Usa 'spa' para español, asegúrate de que el paquete de idioma esté instalado en Tesseract
+            # Usa 'spa' para español, el cual esté instalado en Tesseract
             page_text = pytesseract.image_to_string(image, lang='spa')
             text += page_text + "\n"
         return text
